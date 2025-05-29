@@ -1,6 +1,5 @@
 import React from 'react'
-// import Retesh from '/Retesh.jpg'
-import Retesh from '/Retesh1.png'
+import Retesh from '/Retesh.png'
 import '../components/AboutMe.css'
 import { SiGmail } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
