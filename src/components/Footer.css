@@ -1,0 +1,30 @@
+.footer-container {
+  padding: 40px 10px;
+}
+
+.footer-inner-container {}
+
+.footer-inner-container ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-inner-container ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-copyright {
+  text-align: center;
+  color: #fff;
+}
+
+.footer-copyright a {
+  color: #fff;
+  text-decoration: none;
+}
