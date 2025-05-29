@@ -4,7 +4,18 @@ import { IoClose } from "react-icons/io5";
 
 function Header() {
   const [headerToggle, setHeaderToggle] = useState(false);
-  console.log(headerToggle);
+  // console.log(headerToggle);
+
+  const handleScroll = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -80;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
 
   return (
     <header>

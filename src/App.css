@@ -7,3 +7,19 @@
 p {
   font-weight: 300;
 }
+
+.alert {
+  padding: 10px;
+  margin: 10px 0px;
+  background: white;
+  font-weight: 400;
+  border-radius: 10px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

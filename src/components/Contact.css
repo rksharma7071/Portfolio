@@ -57,6 +57,7 @@
   border: 1px solid #ddd;
   font-size: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: var(--font-body);
 }
 
 .contact-form textarea {

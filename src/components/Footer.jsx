@@ -1,12 +1,12 @@
-import './Footer.css';
+import "./Footer.css";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  console.log(currentYear);
+  // console.log(currentYear);
   return (
-    <footer className='container footer-container'>
-      <div className='footer-inner-container'>
+    <footer className="container footer-container">
+      <div className="footer-inner-container">
         <ul>
           <li>
             <a href="#about">About Me</a>
@@ -24,12 +24,19 @@ const Footer = () => {
             <a href="#contact">Contact</a>
           </li>
         </ul>
-        <div className='footer-copyright'>
-          copyright &copy; {currentYear}. <a href='#'>Retesh Kumar Sharma</a>
+        <div className="footer-copyright">
+          copyright &copy; {currentYear}.{" "}
+          <a
+            href="https://www.linkedin.com/in/retesh-kumar-sharma/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Retesh Kumar Sharma
+          </a>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

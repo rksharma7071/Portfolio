@@ -79,6 +79,16 @@
   color: #fff;
 }
 
+.github:hover {
+  background-color: #181717;
+  color: #fff;
+}
+
+.tailwind:hover {
+  background-color: #38BDF8;
+  color: #fff;
+}
+
 .firebase:hover {
   background-color: #ffca28;
   color: #fff;

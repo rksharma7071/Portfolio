@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgba(255, 255, 255, 1);
   background-color: rgba(3, 32, 54, 1);

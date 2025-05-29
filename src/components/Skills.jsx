@@ -9,6 +9,7 @@ import { FaNpm } from "react-icons/fa";
 import { FaGitAlt } from "react-icons/fa6";
 import { IoLogoFirebase } from "react-icons/io5";
 import { FaReact } from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
 
 
 const Skills = () => {
@@ -32,6 +33,10 @@ const Skills = () => {
           <SiRedux />
           <p>Redux</p>
         </li>
+        <li className="tailwind">
+          <RiTailwindCssFill />
+          <p>Tailwind</p>
+        </li>
         <li className="bootstrap">
           <FaBootstrap />
           <p>Bootstrap</p>
@@ -39,6 +44,10 @@ const Skills = () => {
         <li className="mongodb">
           <SiMongodb />
           <p>MongoDB</p>
+        </li>
+        <li className="firebase">
+          <IoLogoFirebase />
+          <p>Firebase</p>
         </li>
         <li className="npm">
           <FaNpm />
@@ -48,9 +57,9 @@ const Skills = () => {
           <FaGitAlt />
           <p>GIT</p>
         </li>
-        <li className="firebase">
-          <IoLogoFirebase />
-          <p>Firebase</p>
+        <li className="github">
+          <FaGithub />
+          <p>Github</p>
         </li>
 
       </ul>
