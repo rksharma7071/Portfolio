@@ -12,7 +12,7 @@ function AboutMe() {
         <div className="about-content">
           <h2 className="hi">Hi</h2>
           <h1 className="name">I'm Retesh Kumar Sharma</h1>
-          <h1 className="profile">Frontent Developer</h1>
+          <h1 className="profile">Frontend Developer</h1>
           <p className="about-me">
             Specializing in React, and Tailwind CSS to build responsive and
             dynamic websites. Passionate about crafting clean code and
