@@ -34,16 +34,16 @@
   width: 50%;
   margin: 0 auto;
   /* center form */
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(var(--card-bg));
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
 }
 
 .contact-form h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: rgba(var(--text-color), 1);
 }
 
 .contact-form input,
@@ -54,7 +54,9 @@
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(var(--text-color), 0.2);
+  background-color: rgba(var(--bg-color), 1);
+  color: rgba(var(--text-color), 1);
   font-size: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
   font-family: var(--font-body);
@@ -87,5 +89,4 @@
   .contact-form {
     width: 100%;
   }
-}
 }

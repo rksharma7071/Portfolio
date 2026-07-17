@@ -26,7 +26,7 @@ header {
   font-weight: 300;
   padding: 7px 15px;
   text-decoration: none;
-  color: rgba(var(--color-white), 1);
+  color: rgba(var(--text-color), 1);
 }
 
 .nav-menu ul li a:hover {
@@ -53,7 +53,7 @@ header {
   width: 28px;
   height: 3px;
   margin-bottom: 4px;
-  background-color: white;
+  background-color: rgba(var(--text-color), 1);
   border-radius: 5px;
 }
 
@@ -113,7 +113,7 @@ header {
     top: 64px;
     left: 0;
     width: 100%;
-    background-color: rgba(var(--color-dark-blue), 1);
+    background-color: rgba(var(--nav-bg), 1);
     z-index: 5;
   }
 

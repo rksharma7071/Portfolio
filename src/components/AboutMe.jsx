@@ -12,11 +12,9 @@ function AboutMe() {
         <div className="about-content">
           <h2 className="hi">Hi</h2>
           <h1 className="name">I'm Retesh Kumar Sharma</h1>
-          <h1 className="profile">Frontend Developer</h1>
+          <h1 className="profile">MERN Stack Developer</h1>
           <p className="about-me">
-            Specializing in React, and Tailwind CSS to build responsive and
-            dynamic websites. Passionate about crafting clean code and
-            delivering great user experiences.
+            Passionate MERN Stack Developer with 2+ years of professional experience in MongoDB, Express.js, React.js, and Node.js. Specializing in building scalable, secure, and high-performance web applications.
           </p>
           <div className="about-social">
             <a
@@ -55,23 +53,22 @@ function AboutMe() {
       <div className="container about-intro">
         <h1 className="about-who">Who Am I</h1>
         <p>
-          Hi, I’m Retesh Kumar Sharma, a passionate Frontend Developer
-          specializing in building dynamic, responsive, and user-friendly web
+          Hi, I’m Retesh Kumar Sharma, a passionate MERN Stack Developer with 2+ years of professional experience
+          specializing in building dynamic, scalable, and high-performance web
           applications. I hold a B.Tech in Information Technology and currently
-          work as a Software Engineer at FirstWire Apps.
+          work as a Software Engineer (React.js) at FirstWire Apps.
         </p>
         <p>
-          With hands-on experience in React.js, JavaScript, Tailwind CSS, and
+          With hands-on experience in React.js, Node.js, Express.js, MongoDB, Redux Toolkit, and
           REST APIs, I enjoy crafting seamless digital experiences that are both
           visually appealing and functionally robust. My journey includes
-          developing scalable UI components, integrating APIs, and managing
-          state efficiently using React Hooks and Redux.
+          developing scalable UI components, integrating APIs, authentication, and managing
+          state efficiently using Redux Toolkit.
         </p>
         <p>
-          I’m always eager to learn new technologies and enhance web
-          performance. When I’m not coding, you’ll find me exploring new design
-          trends or sharpening my problem-solving skills — which even earned me
-          a top 3 position in a coding hackathon.
+          I’m always eager to learn new technologies and enhance application
+          performance. I have solved 250+ coding problems on LeetCode and built multiple
+          production-ready MERN Stack applications.
         </p>
       </div>
     </>

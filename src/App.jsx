@@ -10,10 +10,20 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  };
 
   return (
     <>
-      <Header />
+      <Header isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <AboutMe />
       <Skills />
       <Projects />

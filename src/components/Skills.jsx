@@ -1,68 +1,26 @@
 import './Skills.css'
-import { FaGithub } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io5";
-import { FaNode } from "react-icons/fa";
-import { SiRedux } from "react-icons/si";
-import { FaBootstrap } from "react-icons/fa";
-import { SiMongodb } from "react-icons/si";
-import { FaNpm } from "react-icons/fa";
-import { FaGitAlt } from "react-icons/fa6";
-import { IoLogoFirebase } from "react-icons/io5";
-import { FaReact } from "react-icons/fa";
-import { RiTailwindCssFill } from "react-icons/ri";
-
 
 const Skills = () => {
+  const skillsData = [
+    { category: "Frontend", items: "React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Redux Toolkit, React Router, Axios" },
+    { category: "Backend & API", items: "Node.js, Express.js, RESTful APIs, JWT Authentication, Nodemailer, Postman" },
+    { category: "Databases", items: "MongoDB, MySQL, Firebase" },
+    { category: "Design & Responsive", items: "Mobile-first design, CSS Grid, Flexbox, Cross-browser compatibility" },
+    { category: "Dev Tools", items: "Git, GitHub, VS Code, Vite, Vercel, Render, Netlify" },
+    { category: "Languages", items: "JavaScript (ES6+), C++" }
+  ];
+
   return (
     <div className='container skills-container' id='skills'>
-      <h1 className='skills-heading'>Skills</h1>
-      <ul className='skills-container-inner'>
-        <li className="react">
-          <FaReact />
-          <p>React</p>
-        </li>
-        <li className="javascript">
-          <IoLogoJavascript />
-          <p>JavaScript</p>
-        </li>
-        <li className="node">
-          <FaNode />
-          <p>Node</p>
-        </li>
-        <li className="redux">
-          <SiRedux />
-          <p>Redux</p>
-        </li>
-        <li className="tailwind">
-          <RiTailwindCssFill />
-          <p>Tailwind</p>
-        </li>
-        <li className="bootstrap">
-          <FaBootstrap />
-          <p>Bootstrap</p>
-        </li>
-        <li className="mongodb">
-          <SiMongodb />
-          <p>MongoDB</p>
-        </li>
-        <li className="firebase">
-          <IoLogoFirebase />
-          <p>Firebase</p>
-        </li>
-        <li className="npm">
-          <FaNpm />
-          <p>NPM</p>
-        </li>
-        <li className="git">
-          <FaGitAlt />
-          <p>GIT</p>
-        </li>
-        <li className="github">
-          <FaGithub />
-          <p>Github</p>
-        </li>
-
-      </ul>
+      <h1 className='skills-heading'>Technical Skills</h1>
+      <div className='skills-grid'>
+        {skillsData.map((skill, index) => (
+          <div key={index} className='skill-card'>
+            <h2>{skill.category}</h2>
+            <p>{skill.items}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

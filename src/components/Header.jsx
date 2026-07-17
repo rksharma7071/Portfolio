@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoMoon, IoSunny } from "react-icons/io5";
 
-function Header() {
+function Header({ isDarkMode, toggleTheme }) {
   const [headerToggle, setHeaderToggle] = useState(false);
   // console.log(headerToggle);
 
@@ -61,7 +61,13 @@ function Header() {
         </ul>
       </nav>
 
-      {/* Hamburger Menu */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+        {/* Theme Toggle Icon */}
+        <div style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} onClick={toggleTheme}>
+          {isDarkMode ? <IoSunny size={24} /> : <IoMoon size={24} />}
+        </div>
+
+        {/* Hamburger Menu */}
       <div
         className={`header-menu ${headerToggle ? "hide" : ""}`}
         onClick={() => setHeaderToggle(true)}
@@ -83,6 +89,7 @@ function Header() {
       ) : (
         ""
       )}
+      </div>
     </header>
   );
 }

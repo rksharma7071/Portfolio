@@ -4,104 +4,47 @@
 
 .skills-container .skills-heading {
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: rgba(var(--color-main), 1);
   border-bottom: 1px solid rgba(var(--color-main), 1);
   width: fit-content;
 }
 
-.skills-container-inner {
-  display: flex;
-  flex-wrap: wrap;
-  /* justify-content: center; */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  list-style: none;
 }
 
-.skills-container-inner li {
-  width: 13%;
-  max-width: 150px;
-  height: 150px;
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+.skill-card {
+  background-color: rgba(var(--card-bg));
+  padding: 25px;
   border-radius: 10px;
-  padding: 10px;
-  transition: background 0.3s, color 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(var(--text-color), 0.1);
 }
 
-.skills-container-inner li svg {
-  height: 50px;
-  width: 50px;
-  /* color: rgba(var(--color-main), 1); */
-  margin-bottom: 10px;
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(var(--color-main), 0.5);
 }
 
-.react:hover {
-  background-color: #61DAFB;
-  color: #fff;
+.skill-card h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(var(--color-main), 1);
+  margin-bottom: 15px;
 }
 
-.javascript:hover {
-  background-color: #f7df1e;
-  color: #fff;
+.skill-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--text-color), 0.9);
 }
-
-.node:hover {
-  background-color: #68a063;
-  color: #fff;
-}
-
-.redux:hover {
-  background-color: #764abc;
-  color: #fff;
-}
-
-.bootstrap:hover {
-  background-color: #563d7c;
-  color: #fff;
-}
-
-.mongodb:hover {
-  background-color: #4db33d;
-  color: #fff;
-}
-
-.npm:hover {
-  background-color: #cb3837;
-  color: #fff;
-}
-
-.git:hover {
-  background-color: #f1502f;
-  color: #fff;
-}
-
-.github:hover {
-  background-color: #181717;
-  color: #fff;
-}
-
-.tailwind:hover {
-  background-color: #38BDF8;
-  color: #fff;
-}
-
-.firebase:hover {
-  background-color: #ffca28;
-  color: #fff;
-}
-
 
 @media screen and (max-width:768.8px) {
-  .skills-container-inner {
-    justify-content: center;
-  }
-
-  .skills-container-inner li {
-    max-width: 46%;
-    width: 50%;
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 }

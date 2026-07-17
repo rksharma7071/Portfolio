@@ -6,8 +6,20 @@
   --color-main: 5, 140, 255;
   --font-body: "Open Sans";
   --font-heading: "Montserrat";
+
+  /* Light mode colors (default) */
+  --bg-color: 255, 255, 255;
+  --text-color: 3, 32, 54;
+  --nav-bg: 240, 240, 240;
+  --card-bg: 0, 0, 0, 0.05;
 }
 
+body.dark-mode {
+  --bg-color: 3, 32, 54;
+  --text-color: 255, 255, 255;
+  --nav-bg: 3, 32, 54;
+  --card-bg: 255, 255, 255, 0.1;
+}
 
 * {
   margin: 0;
@@ -20,10 +32,10 @@ html {
 }
 
 body {
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(3, 32, 54, 1);
+  color: rgba(var(--text-color), 1);
+  background-color: rgba(var(--bg-color), 1);
   font-family: var(--font-body), sans-serif;
-
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a,
