@@ -5,9 +5,9 @@ import { SiGmail } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoCheckmarkCircle, IoAlertCircleOutline, IoSend } from "react-icons/io5";
 
-const service_id = import.meta.env.VITE_SERVICE_ID || "service_sh5a21d";
-const template_id = import.meta.env.VITE_TEMPLATE_ID || "template_q3q7o1k";
-const public_key = import.meta.env.VITE_PUBLIC_KEY || "N_lzlWeVEQefa8NLz";
+const service_id = import.meta.env.VITE_SERVICE_ID;
+const template_id = import.meta.env.VITE_TEMPLATE_ID;
+const public_key = import.meta.env.VITE_PUBLIC_KEY;
 
 const Contact = () => {
   const [contactForm, setContactForm] = useState({
