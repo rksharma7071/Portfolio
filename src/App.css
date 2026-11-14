@@ -1,25 +1,11 @@
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
+/* App-level layout styles */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-surface);
 }
 
-p {
-  font-weight: 300;
-}
-
-.alert {
-  padding: 10px;
-  margin: 10px 0px;
-  background: white;
-  font-weight: 400;
-  border-radius: 10px;
-}
-
-.success {
-  color: green;
-}
-
-.error {
-  color: red;
+main {
+  flex: 1;
 }

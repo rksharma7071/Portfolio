@@ -1,0 +1,894 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Retesh</title>
+    <style>
+        @import"https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap";
+
+        :root {
+            --color-white: 255, 255, 255;
+            --color-dark-blue: 3, 32, 54;
+            --color-main: 5, 140, 255;
+            --font-body: "Open Sans";
+            --font-heading: "Montserrat";
+            --bg-color: 255, 255, 255;
+            --text-color: 3, 32, 54;
+            --nav-bg: 240, 240, 240;
+            --card-bg: 0, 0, 0, .05
+        }
+
+        body.dark-mode {
+            --bg-color: 3, 32, 54;
+            --text-color: 255, 255, 255;
+            --nav-bg: 3, 32, 54;
+            --card-bg: 255, 255, 255, .1
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            color: rgba(var(--text-color), 1);
+            background-color: rgba(var(--bg-color), 1);
+            font-family: var(--font-body), sans-serif;
+            transition: background-color .3s, color .3s
+        }
+
+        a,
+        button {
+            cursor: pointer
+        }
+
+        .btn {
+            font-family: inherit;
+            display: inline-block;
+            width: 8em;
+            line-height: 2.5em;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border: 2px solid;
+            transition: color .5s;
+            z-index: 1;
+            border-radius: 6px;
+            font-weight: 500;
+            text-align: center;
+            outline: none
+        }
+
+        .btn:focus {
+            outline: 3px solid rgba(var(--color-main), 1);
+            outline-offset: 2px
+        }
+
+        .btn-primary {
+            color: rgba(var(--color-main), 1);
+            background-color: #ddd;
+            border-color: rgba(var(--color-main), 1)
+        }
+
+        .btn-secondary {
+            background-color: rgba(var(--color-main), 1);
+            color: #ddd;
+            border-color: rgba(var(--color-main), 1)
+        }
+
+        .btn-primary:before,
+        .btn-secondary:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            height: 150px;
+            width: 200px;
+            border-radius: 50%;
+            top: 100%;
+            left: 100%;
+            transition: all .7s
+        }
+
+        .btn-primary:before {
+            background: rgba(var(--color-main), 1)
+        }
+
+        .btn-secondary:before {
+            background: #ddd
+        }
+
+        .btn-primary:hover {
+            color: #ddd
+        }
+
+        .btn-secondary:hover {
+            color: rgba(var(--color-main), 1);
+            border-color: rgba(var(--color-main), 1)
+        }
+
+        .btn-primary:hover:before,
+        .btn-secondary:hover:before {
+            top: -30px;
+            left: -30px
+        }
+
+        .btn-primary:active:before,
+        .btn-secondary:active:before {
+            background: rgba(var(--color-main), 1);
+            transition: background 0s
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto
+        }
+
+        p {
+            font-weight: 300
+        }
+
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            background: #fff;
+            font-weight: 400;
+            border-radius: 10px
+        }
+
+        .success {
+            color: green
+        }
+
+        .error {
+            color: red
+        }
+
+        header {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0
+        }
+
+        .header-logo {
+            font-size: 18px;
+            font-weight: 700;
+            padding: 10px
+        }
+
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+
+        .nav-menu ul li a {
+            font-size: 14px;
+            font-weight: 300;
+            padding: 7px 15px;
+            text-decoration: none;
+            color: rgba(var(--text-color), 1)
+        }
+
+        .nav-menu ul li a:hover {
+            text-decoration: underline
+        }
+
+        .header-close {
+            display: none;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer
+        }
+
+        .header-menu {
+            display: none;
+            cursor: pointer
+        }
+
+        .header-menu div {
+            width: 28px;
+            height: 3px;
+            margin-bottom: 4px;
+            background-color: rgba(var(--text-color), 1);
+            border-radius: 5px
+        }
+
+        .nav-menu-mobile {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, opacity .4s ease
+        }
+
+        .nav-menu-mobile.show {
+            max-height: 500px;
+            transition: max-height .4s ease-in
+        }
+
+        .header-menu.hide {
+            display: none
+        }
+
+        .header-close.show {
+            display: flex
+        }
+
+        .nav-menu-mobile.show {
+            max-height: 500px;
+            opacity: 1
+        }
+
+        @media screen and (max-width: 768.8px) {
+            .header-menu {
+                display: block
+            }
+
+            .nav-menu-desktop {
+                display: none
+            }
+
+            .header-close {
+                z-index: 10;
+                display: flex
+            }
+
+            header {
+                padding: 10px 20px
+            }
+
+            .nav-menu ul {
+                flex-direction: column
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(var(--nav-bg), 1);
+                z-index: 5
+            }
+
+            .nav-menu ul li a {
+                display: block;
+                padding: 15px;
+                text-align: center
+            }
+        }
+
+        .about-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding: 60px 10px
+        }
+
+        .about-content {
+            width: 60%
+        }
+
+        .about-content .hi,
+        .about-content .profile {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            margin-bottom: 7px
+        }
+
+        .about-content .profile {
+            color: rgba(var(--color-main), 1)
+        }
+
+        .about-content .about-me {
+            line-height: 1.7;
+            font-weight: 300
+        }
+
+        .about-image {
+            width: 40%;
+            height: 100%
+        }
+
+        .about-image img {
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(2px 4px 30px rgba(var(--color-main), 1))
+        }
+
+        .about-social {
+            display: flex;
+            gap: 20px;
+            padding: 20px 20px 20px 0
+        }
+
+        .about-social .email,
+        .about-social .linkedin,
+        .about-social .github-1 {
+            width: 45px;
+            height: 45px;
+            background: rgba(var(--color-main), 1);
+            display: block;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .about-social .email svg,
+        .about-social .linkedin svg,
+        .about-social .github-1 svg {
+            height: 30px;
+            width: 30px;
+            color: #fff
+        }
+
+        .about-intro {
+            padding: 20px 10px
+        }
+
+        .about-intro .about-who {
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: rgba(var(--color-main), 1);
+            border-bottom: 1px solid rgba(var(--color-main), 1);
+            width: fit-content
+        }
+
+        .about-intro p {
+            line-height: 1.5;
+            letter-spacing: 1px;
+            padding-bottom: 10px;
+            font-weight: 300
+        }
+
+        @media screen and (max-width: 768.8px) {
+            .about-container {
+                flex-direction: column;
+                height: auto;
+                padding: 30px
+            }
+
+            .about-content,
+            .about-image {
+                width: 100%
+            }
+        }
+
+        .skills-container {
+            padding: 40px 10px
+        }
+
+        .skills-container .skills-heading {
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: rgba(var(--color-main), 1);
+            border-bottom: 1px solid rgba(var(--color-main), 1);
+            width: fit-content
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px
+        }
+
+        .skill-card {
+            background-color: rgba(var(--card-bg));
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform .3s ease, box-shadow .3s ease;
+            border: 1px solid rgba(var(--text-color), .1)
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px #0000001a;
+            border-color: rgba(var(--color-main), .5)
+        }
+
+        .skill-card h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(var(--color-main), 1);
+            margin-bottom: 15px
+        }
+
+        .skill-card p {
+            font-size: .95rem;
+            line-height: 1.6;
+            color: rgba(var(--text-color), .9)
+        }
+
+        @media screen and (max-width: 768.8px) {
+            .skills-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .project-container {
+            padding: 40px 10px
+        }
+
+        .project-heading {
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: rgba(var(--color-main), 1);
+            border-bottom: 1px solid rgba(var(--color-main), 1);
+            width: fit-content
+        }
+
+        .project-container-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none
+        }
+
+        .project-container-inner li {
+            position: relative;
+            width: 32%;
+            background-color: rgba(var(--card-bg));
+            padding: 10px;
+            border-radius: 10px;
+            overflow: hidden
+        }
+
+        .project-container-inner li h2 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 18px
+        }
+
+        .project-container-inner li img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            object-fit: contain;
+            background-color: #fff
+        }
+
+        .project-overlay {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all .4s ease;
+            background-color: rgba(var(--bg-color), 1)
+        }
+
+        .project-container-inner li:hover .project-overlay {
+            display: flex;
+            background-color: rgba(var(--bg-color), 1);
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .project-overlay a {
+            font-size: 14px;
+            text-decoration: none;
+            color: rgba(var(--text-color), 1)
+        }
+
+        @media screen and (max-width: 768.8px) {
+            .project-container-inner li {
+                width: 47%
+            }
+
+            .project-overlay {
+                position: relative;
+                overflow: visible;
+                transition: unset;
+                opacity: unset;
+                transform: none;
+                background-color: transparent;
+                padding-bottom: 10px
+            }
+
+            .project-container-inner li:hover .project-overlay {
+                transform: unset
+            }
+        }
+
+        @media screen and (max-width: 480.8px) {
+            .project-container-inner {
+                flex-direction: column
+            }
+
+            .project-container-inner li {
+                width: 100%
+            }
+        }
+
+        .contact-container {
+            padding: 40px 10px
+        }
+
+        .contact-container-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 100px
+        }
+
+        .contact-contact {
+            width: 50%
+        }
+
+        .contact-contact h1 {
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: rgba(var(--color-main), 1);
+            border-bottom: 1px solid rgba(var(--color-main), 1);
+            width: fit-content
+        }
+
+        .contact-contact h1,
+        .contact-contact h2 {
+            font-weight: 400;
+            margin-bottom: 10px
+        }
+
+        .contact-contact p {
+            line-height: 1.4
+        }
+
+        .contact-form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: rgba(var(--card-bg));
+            padding: 30px;
+            border-radius: 10px
+        }
+
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: rgba(var(--text-color), 1)
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            display: block;
+            width: 100%;
+            height: 40px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(var(--text-color), .2);
+            background-color: rgba(var(--bg-color), 1);
+            color: rgba(var(--text-color), 1);
+            font-size: 14px;
+            transition: border-color .3s, box-shadow .3s;
+            font-family: var(--font-body)
+        }
+
+        .contact-form textarea {
+            height: 100px;
+            resize: none
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: rgba(var(--color-main), 1);
+            border-width: 2px;
+            box-shadow: 0 0 5px rgba(var(--color-main), 1);
+            outline: none
+        }
+
+        @media screen and (max-width: 768.8px) {
+            .contact-container-inner {
+                flex-direction: column;
+                gap: 30px
+            }
+
+            .contact-contact,
+            .contact-form {
+                width: 100%
+            }
+        }
+
+        .footer-container {
+            padding: 40px 10px
+        }
+
+        .footer-inner-container ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 20px;
+            padding-bottom: 20px
+        }
+
+        .footer-inner-container ul li a {
+            color: rgba(var(--text-color), 1);
+            text-decoration: none
+        }
+
+        .footer-copyright {
+            text-align: center;
+            color: rgba(var(--text-color), 1)
+        }
+
+        .footer-copyright a {
+            color: rgba(var(--text-color), 1);
+            text-decoration: none
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <!-- Scroll Progress Bar -->
+        <div class="scroll-progress" id="scrollProgress"></div>
+
+        <header id="header">
+            <div class="header-logo">RETESH</div>
+            <nav class="nav-menu nav-menu-desktop">
+                <ul>
+                    <li><a href="#overview" data-nav>About Me</a></li>
+                    <li><a href="#skills" data-nav>Skills</a></li>
+                    <li><a href="#projects" data-nav>Projects</a></li>
+                    <li><a href="#services" data-nav>Services</a></li>
+                    <li><a href="#contact" data-nav>Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="icon-moon" stroke="currentColor" fill="currentColor" stroke-width="0"
+                        viewBox="0 0 512 512" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M264 480A232 232 0 0 1 32 248c0-94 54-178.28 137.61-214.67a16 16 0 0 1 21.06 21.06C181.07 76.43 176 104.66 176 136c0 110.28 89.72 200 200 200 31.34 0 59.57-5.07 81.61-14.67a16 16 0 0 1 21.06 21.06C442.28 426 358 480 264 480z">
+                        </path>
+                    </svg>
+                    <svg class="icon-sun" stroke="currentColor" fill="currentColor" stroke-width="0"
+                        viewBox="0 0 512 512" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.8 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.5 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z">
+                        </path>
+                    </svg>
+                </button>
+                <button class="header-menu" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+            </div>
+            <nav class="nav-menu nav-menu-mobile" id="mobileNav">
+                <ul>
+                    <li><a href="#overview">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- ABOUT -->
+        <div class="about-container" id="overview">
+            <div class="about-content reveal">
+                <h2 class="hi">Hi 👋</h2>
+                <h1 class="name">I'm Retesh Kumar Sharma</h1>
+                <h1 class="profile"><span class="typewriter" id="typewriter"></span></h1>
+                <p class="about-me">Passionate MERN Stack Developer with 3+ years of professional experience in MongoDB,
+                    Express.js, React.js, and Node.js. Specializing in building scalable, secure, and high-performance
+                    web applications.</p>
+                <div class="about-social">
+                    <a href="/Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Resume</a>
+                    <a href="mailto:rksharma7071@gmail.com" class="social-btn email" aria-label="Email">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                            width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/retesh-kumar-sharma/" class="social-btn linkedin"
+                        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/rksharma7071" class="social-btn github-1" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512"
+                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="about-image reveal reveal-right">
+                <img src="/Retesh.png" alt="Retesh Kumar Sharma">
+            </div>
+        </div>
+
+        <!-- WHO AM I -->
+        <div class="container about-intro reveal">
+            <h1 class="about-who">Who Am I</h1>
+            <p>Hi, I'm Retesh Kumar Sharma, a passionate MERN Stack Developer with 3+ years of professional experience
+                specializing in building dynamic, scalable, and high-performance web applications. I hold a B.Tech in
+                Information Technology and currently work as a Software Engineer (React.js) at FirstWire Apps.</p>
+            <p>With hands-on experience in React.js, Node.js, Express.js, MongoDB, Redux Toolkit, and REST APIs, I enjoy
+                crafting seamless digital experiences that are both visually appealing and functionally robust. My
+                journey includes developing scalable UI components, integrating APIs, authentication, and managing state
+                efficiently using Redux Toolkit.</p>
+            <p>I'm always eager to learn new technologies and enhance application performance. I have solved 250+ coding
+                problems on LeetCode and built multiple production-ready MERN Stack applications.</p>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="container skills-container" id="skills">
+            <h1 class="skills-heading reveal">Technical Skills</h1>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <h2>Frontend</h2>
+                    <p>React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Redux Toolkit, React Router,
+                        Axios</p>
+                </div>
+                <div class="skill-card reveal">
+                    <h2>Backend &amp; API</h2>
+                    <p>Node.js, Express.js, RESTful APIs, JWT Authentication, Nodemailer, Postman</p>
+                </div>
+                <div class="skill-card reveal">
+                    <h2>Databases</h2>
+                    <p>MongoDB, MySQL, Firebase</p>
+                </div>
+                <div class="skill-card reveal">
+                    <h2>Design &amp; Responsive</h2>
+                    <p>Mobile-first design, CSS Grid, Flexbox, Cross-browser compatibility</p>
+                </div>
+                <div class="skill-card reveal">
+                    <h2>Dev Tools</h2>
+                    <p>Git, GitHub, VS Code, Vite, Vercel, Render, Netlify</p>
+                </div>
+                <div class="skill-card reveal">
+                    <h2>Languages</h2>
+                    <p>JavaScript (ES6+), C++</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="container project-container" id="projects">
+            <h1 class="project-heading reveal">Projects</h1>
+            <ul class="project-container-inner">
+                <li class="reveal">
+                    <img alt="VyapaarSetu" src="./vyapaar-setu.png">
+                    <h2>VyapaarSetu (Inventory Management)</h2>
+                    <div class="project-overlay">
+                        <a href="https://github.com/rksharma7071/VyapaarSetu" class="btn btn-primary" target="_blank"
+                            rel="noopener noreferrer">Github</a>
+                        <a href="https://vyapaar-setu-frontend.vercel.app" class="btn btn-primary" target="_blank"
+                            rel="noopener noreferrer">Live Preview</a>
+                    </div>
+                </li>
+                <li class="reveal">
+                    <img alt="SchoolBook" src="./schoolbook.png">
+                    <h2>SchoolBook (E-Commerce)</h2>
+                    <div class="project-overlay">
+                        <a href="https://github.com/rksharma7071/SchoolBook" class="btn btn-primary" target="_blank"
+                            rel="noopener noreferrer">Github</a>
+                        <a href="https://schoolbook.lol" class="btn btn-primary" target="_blank"
+                            rel="noopener noreferrer">Live Preview</a>
+                    </div>
+                </li>
+                <li class="reveal">
+                    <img alt="Saurabh's Rental Car Service" src="./saurabh-s-rental-car-service.png">
+                    <h2>Saurabh's Rental Car Service</h2>
+                    <div class="project-overlay">
+                        <a href="https://github.com/rksharma7071/Saurabh-s-Rental-Car-Service" class="btn btn-primary"
+                            target="_blank" rel="noopener noreferrer">Github</a>
+                        <a href="https://saurabh-s-rental-car-servicej.vercel.app" class="btn btn-primary"
+                            target="_blank" rel="noopener noreferrer">Live Preview</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- SERVICES (MISSING — ADDED) -->
+        <div class="container services-container" id="services">
+            <h1 class="services-heading reveal">Services</h1>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">⚛️</div>
+                    <h2>Frontend Development</h2>
+                    <p>Building responsive, accessible React interfaces with Redux Toolkit, React Router, and modern
+                        CSS. Pixel-perfect UI from Figma to production.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🛠️</div>
+                    <h2>Backend &amp; API Development</h2>
+                    <p>RESTful APIs with Node.js and Express. JWT authentication, role-based access, Nodemailer
+                        integration, and MongoDB data modeling.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">📦</div>
+                    <h2>Full-Stack MERN Applications</h2>
+                    <p>End-to-end web apps — from database design and API to deployment on Vercel/Render with
+                        CI-friendly workflows.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon">🚀</div>
+                    <h2>Performance Optimization</h2>
+                    <p>Code splitting, lazy loading, bundle analysis, and Lighthouse audits to keep your app fast and
+                        SEO-friendly.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="container contact-container" id="contact">
+            <div class="contact-container-inner">
+                <div class="contact-contact reveal">
+                    <h1>Contact Me</h1>
+                    <h2>Let's Work Together!</h2>
+                    <p>Have a project in mind or just want to say hello? Feel free to drop me a message using the form
+                        below — I'll get back to you as soon as possible!</p>
+                </div>
+                <div class="contact-form reveal reveal-right">
+                    <form id="contactForm" novalidate>
+                        <input placeholder="Name" type="text" name="name" required>
+                        <input placeholder="Email" type="email" name="email" required>
+                        <input placeholder="Subject" type="text" name="subject" required>
+                        <textarea placeholder="Message" name="message" required></textarea>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="container footer-container">
+            <div class="footer-inner-container">
+                <ul>
+                    <li><a href="#overview">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="footer-copyright">copyright © 2026. <a
+                        href="https://www.linkedin.com/in/retesh-kumar-sharma/" target="_blank"
+                        rel="noopener noreferrer">Retesh Kumar Sharma</a></div>
+            </div>
+        </footer>
+
+        <!-- Back to top -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+    </div>
+    <script type="module" src="/assets/index-BK_0zcBA.js"></script>
+</body>
+
+</html>
