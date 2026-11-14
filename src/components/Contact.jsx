@@ -5,6 +5,10 @@ import { SiGmail } from "react-icons/si";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoCheckmarkCircle, IoAlertCircleOutline, IoSend } from "react-icons/io5";
 
+const service_id = import.meta.env.VITE_SERVICE_ID || "service_sh5a21d";
+const template_id = import.meta.env.VITE_TEMPLATE_ID || "template_q3q7o1k";
+const public_key = import.meta.env.VITE_PUBLIC_KEY || "N_lzlWeVEQefa8NLz";
+
 const Contact = () => {
   const [contactForm, setContactForm] = useState({
     name: "",
@@ -36,13 +40,19 @@ const Contact = () => {
 
     setStatus({ submitting: true, message: "", type: "" });
 
+    // Ensure parameters match standard template variables
+    const templateParams = {
+      name: contactForm.name,
+      from_name: contactForm.name,
+      email: contactForm.email,
+      from_email: contactForm.email,
+      reply_to: contactForm.email,
+      subject: contactForm.subject || "Portfolio Contact Inquiry",
+      message: contactForm.message,
+    };
+
     emailjs
-      .send(
-        "service_sh5a21d",
-        "template_q3q7o1k",
-        contactForm,
-        "N_lzlWeVEQefa8NLz"
-      )
+      .send(service_id, template_id, templateParams, public_key)
       .then(
         () => {
           setStatus({
@@ -57,10 +67,18 @@ const Contact = () => {
             message: "",
           });
         },
-        () => {
+        (error) => {
+          console.error("EmailJS submission error:", error);
+          const errorMessage =
+            error?.text ||
+            error?.message ||
+            (typeof error === "string" ? error : "");
+
           setStatus({
             submitting: false,
-            message: "Unable to send message right now. Please reach out via email directly.",
+            message: errorMessage
+              ? `Unable to send message: ${errorMessage}`
+              : "Unable to send message right now. Please reach out via email directly.",
             type: "error"
           });
         }
@@ -144,9 +162,7 @@ const Contact = () => {
           <div className="contact-form-panel reveal delay-2">
             <form className="card apple-form-card" onSubmit={handleContactForm}>
               <div className="form-group">
-                <label htmlFor="name" className="form-label">
-                  Your Name *
-                </label>
+                <label htmlFor="name" className="form-label">Your Name *</label>
                 <input
                   id="name"
                   type="text"
@@ -160,9 +176,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email" className="form-label">
-                  Email Address *
-                </label>
+                <label htmlFor="email" className="form-label">Email Address *</label>
                 <input
                   id="email"
                   type="email"
@@ -191,9 +205,7 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message" className="form-label">
-                  Message *
-                </label>
+                <label htmlFor="message" className="form-label">Message *</label>
                 <textarea
                   id="message"
                   placeholder="Tell me about your team, project, or question..."
